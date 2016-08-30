@@ -31,7 +31,7 @@ In all cases, the original audio data should be copied untouched (without transc
 
 The script will look for metadata in:
 
-  * The source file names (like `Atrist - Album.mkv`)
+  * The source file names (like `Artist - Album.mkv`)
   * The source container (using `ffprobe`)
   * A JSON file (see [the included example](example.json))
   * A CUE file
