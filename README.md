@@ -53,11 +53,11 @@ For these containers, a JSON file containing the extra metadata will most likely
 
   * The artist and album names can be pulled from the container filename if it’s formatted as `Artist - Album.mkv`
   * Some applications, like [Handbrake](https://handbrake.fr/), will allow you to enter the names for each track prior to creating the container.
-  * If everything goes well, Handbrake will also mark the start of each "chapter" (track) in the stream.
+  * If everything goes well, Handbrake will also mark the start of each “chapter” (track) in the stream.
 
 Once you have your source file and metadata ready:
 
-    tractor.py -s "Album - Artist.mkv" -d album.json -a cover.jpg -c
+    tractor.py -s 'Album - Artist.mkv' -d album.json -a cover.jpg -c
 
 ### CUE + WAV ###
 
@@ -73,9 +73,9 @@ If you end up with this combination, the CUE file will probably specify the path
 
 ### Handbrake vs. MakeMKV ###
 
-The short version is "use Handbrake when possible" (with the appropriate "Passthru" audio option). It will allow you to pre-define the track names and it will mark the start of each track for automatically. With [MakeMKV](http://www.makemkv.com/), you’ll get the data and that’s it. Names and start times will need to determined with trial and error then entered by hand.
+The short version is “use Handbrake when possible” (with the appropriate “Passthru” audio option). It will allow you to pre-define the track names and it will mark the start of each track for automatically. With [MakeMKV](http://www.makemkv.com/), you’ll get the data and that’s it. Names and start times will need to determined with trial and error then entered by hand.
 
-So why would you ever use MakeMKV? Because it almost always works and it doesn’t try to do anything "smart" to the data. It just copies it.
+So why would you ever use MakeMKV? Because it almost always works and it doesn’t try to do anything “smart” to the data. It just copies it.
 
 I’ve seen the following problems with Handbrake:
 
