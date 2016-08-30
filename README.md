@@ -73,7 +73,7 @@ If you end up with this combination, the CUE file will probably specify the path
 
 ### Handbrake vs. MakeMKV ###
 
-The short version is “use Handbrake when possible” (with the appropriate “Passthru” audio option). It will allow you to pre-define the track names and it will mark the start of each track for automatically. With [MakeMKV](http://www.makemkv.com/), you’ll get the data and that’s it. Names and start times will need to determined with trial and error then entered by hand.
+The short version is “use Handbrake when possible” (with the appropriate “Passthru” audio option). It will allow you to pre-define the track names and it will mark the start of each track automatically. With [MakeMKV](http://www.makemkv.com/), you’ll get the data and that’s it. Names and start times will need to determined with trial and error, then entered by hand.
 
 So why would you ever use MakeMKV? Because it almost always works and it doesn’t try to do anything “smart” to the data. It just copies it.
 
@@ -93,7 +93,7 @@ Matroska containers don’t care what you put in them, so they’re a perfect ch
 
 One obvious reason is that it’s lossless. DVD and Bluray albums often contain 24-bit stereo versions of the music. No point in pulling that out if you’re going to throw away most of the data.
 
-So why not FLAC? Most players support FLAC, with one monumental exception: iTunes. But iTunes does support Apple Lossless (ALAC) and, because it’s been open source for many years now, so do all the other players.
+So why not FLAC? Most players support FLAC, with one monumental exception: iTunes. But iTunes *does* support Apple Lossless (ALAC) and, because it’s been open source for many years now, so do all the other players.
 
 ## Other Tools ##
 
