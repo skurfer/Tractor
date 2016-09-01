@@ -70,6 +70,7 @@ If you end up with this combination, the CUE file will probably specify the path
 * If you specify a release date (and you will, because it’s important and you’re not an animal), follow the format recommended in [the Matroska documentation](https://www.matroska.org/technical/specs/tagging/index.html#why)
 * When attaching artwork to a Matroska container, the original filename will also be stored in the container. You’ll probably never see it, but just in case, you might want to give it a reasonable name like “cover.jpg” prior to using Tractor.
 * If using a CUE file, check the metadata before using Tractor. (It’s just a text file that you can modify with the editor of your choice.) Genre is often missing or wrong. Release date is often missing, wrong, or not formatted according to the Matroska spec. Track names are often capitalized incorrectly. You get the idea.
+* Streams are numbered starting with 0 and the first is *usually* video we’re not interested in. As a result, Tractor defaults to stream 1 unless you tell it otherwise. If the source container has both DTS and 24-bit stereo and you want to get both, you’ll need to specify a stream. Likewise, if the source file is just a plain WAV or DTS file (no container), there will only be one stream, so you’ll need to tell it to grab stream 0.
 
 ### Handbrake vs. MakeMKV ###
 
@@ -82,6 +83,20 @@ I’ve seen the following problems with Handbrake:
   * Unable to read the layout of the source disc.
   * The Passthru option doesn’t copy the original data untouched.
   * The index is corrupt or can’t be understood, so the track durations get messed up. Usually this is very obvious because it will think the first several tracks are 0.033 seconds long, and the final track is a full hour. Note that in this case, the data is probably still usable and the track names are in place. You just need to manually give start times.
+
+### Using FFmpeg Directly ###
+
+In a lot of cases, the GUI tools will fail you. They really depend on indexes and layouts and such. If that information is corrupt or confusing to the app in some way, it might omit some titles, entire chunks of a stream, or just refuse to read the disc at all. It’s not hopeless though. You might be able to get the data using FFmpeg.
+
+To see what’s available on the disc in Title 1, go into the `VIDEO_TS` folder and try this:
+
+    cat VTS_01_?.VOB | ffprobe -
+
+If you see the stream, you might be able to pull it out. Assuming the DTS data is in stream 2:
+
+    cat VTS_01_?.VOB | ffmpeg -i - -c:a copy -map 0:2 ~/Desktop/out.dts
+
+A similar technique can be used if the data is in `AUDIO_TS`.
 
 ## Why? ##
 
