@@ -11,7 +11,7 @@ This script will extract individual tracks from the original stream and put each
   * MKV containers
   * M4V containers
   * CUE + WAV
-  * “Naked” DTS, AC3, and WAV files
+  * “Naked” DTS, AC3, MLP, and WAV files
   * Probably any container that FFmpeg supports
 
 ## What will I end up with? ##

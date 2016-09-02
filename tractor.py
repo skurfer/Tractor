@@ -159,6 +159,8 @@ def md_from_ffprobe(source_path):
             audio_codec = 'wav'
             if container and stream['channels'] == 2:
                 audio_codec = 'alac'
+        if codec.startswith('MLP'):
+            audio_codec = 'mlp'
     data['audio_codec'] = audio_codec
     tracks = []
     for (track, chapter) in enumerate(ffprobe_data['chapters'], 1):
