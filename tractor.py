@@ -146,7 +146,11 @@ def md_from_ffprobe(source_path):
     # find audio stream and format
     audio_codec = 'dts'
     data = {}
-    for stream in ffprobe_data['streams']:
+    streams = ffprobe_data.get('streams', [])
+    if len(streams) == 1:
+        # proably audio data with no container
+        force_stream = 0
+    for stream in streams:
         if stream['codec_type'] != 'audio':
             continue
         if force_stream and stream['index'] != force_stream:

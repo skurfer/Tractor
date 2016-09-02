@@ -70,7 +70,8 @@ If you end up with this combination, the CUE file will probably specify the path
 * If you specify a release date (and you will, because it’s important and you’re not an animal), follow the format recommended in [the Matroska documentation](https://www.matroska.org/technical/specs/tagging/index.html#why)
 * When attaching artwork to a Matroska container, the original filename will also be stored in the container. You’ll probably never see it, but just in case, you might want to give it a reasonable name like “cover.jpg” prior to using Tractor.
 * If using a CUE file, check the metadata before using Tractor. (It’s just a text file that you can modify with the editor of your choice.) Genre is often missing or wrong. Release date is often missing, wrong, or not formatted according to the Matroska spec. Track names are often capitalized incorrectly. You get the idea.
-* Streams are numbered starting with 0 and the first is *usually* video we’re not interested in. As a result, Tractor defaults to stream 1 unless you tell it otherwise. If the source container has both DTS and 24-bit stereo and you want to get both, you’ll need to specify a stream. Likewise, if the source file is just a plain WAV or DTS file (no container), there will only be one stream, so you’ll need to tell it to grab stream 0.
+* Streams are numbered starting with 0 and the first is *usually* video we’re not interested in. As a result, Tractor defaults to stream 1 unless you tell it otherwise. If the source container has both DTS and 24-bit stereo and you want to get both, you’ll need to specify each stream, one at a time.
+* If the source file is just plain audio data (no container), there will only be one stream, so Tractor will default to stream 0.
 
 ### Handbrake vs. MakeMKV ###
 
