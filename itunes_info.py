@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from ScriptingBridge import SBApplication, NSPredicate
 
 
