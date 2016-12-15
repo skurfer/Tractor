@@ -85,6 +85,10 @@ def md_from_cue(cue_path):
                 cue_data['date_released'] = ' '.join(
                     line.split(' ')[2:]
                 ).strip('"')
+            if line.startswith('REM DISCNUMBER '):
+                cue_data['disc'] = ' '.join(
+                    line.split(' ')[2:]
+                ).strip('"')
             if line.startswith('PERFORMER '):
                 cue_data['artist'] = ' '.join(
                     line.split(' ')[1:]
