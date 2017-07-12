@@ -18,7 +18,7 @@ This script will extract individual tracks from the original stream and put each
 
 A folder containing a file for each track. The exact results depend on the format of the audio data and the layout you choose.
 
-Without the `--container` option, the resulting tracks will be either `.dts`, `.ac3`, or `.wav`. With that option, the tracks will be `.mka` (Matroska Audio) or `.m4a` (Apple Lossless).
+Without the `--container` option, the resulting tracks will be either `.dts`, `.ac3`, `.mlp`, or `.wav`. *With* that option, the tracks will be `.mka` (Matroska Audio) or `.m4a` (Apple Lossless).
 
 In all cases, the original audio data should be copied untouched (without transcoding or lossy compression) into the resulting files.
 
@@ -40,7 +40,7 @@ In order to function, the script needs at least:
 
   * Artist
   * Album
-  * Track start and end times
+  * Track start times
   * Track titles
 
 ## Examples ##
@@ -82,7 +82,7 @@ So why would you ever use MakeMKV? Because it almost always works and it doesn�
 I’ve seen the following problems with Handbrake:
 
   * Unable to read the layout of the source disc.
-  * The Passthru option doesn’t copy the original data untouched.
+  * The Passthru option doesn’t copy the original data untouched. (If this happens, try changing the output from MP4 to MKV.)
   * The index is corrupt or can’t be understood, so the track durations get messed up. Usually this is very obvious because it will think the first several tracks are 0.033 seconds long, and the final track is a full hour. Note that in this case, the data is probably still usable and the track names are in place. You just need to manually give start times.
 
 ### Using FFmpeg Directly ###
@@ -93,7 +93,7 @@ To see what’s available on the disc in Title 1, go into the `VIDEO_TS` folder 
 
     cat VTS_01_?.VOB | ffprobe -
 
-If you see the stream, you might be able to pull it out. Assuming the DTS data is in stream 2:
+If you see the stream, you might be able to pull it out. Assuming you want DTS data, and you see it in stream 2:
 
     cat VTS_01_?.VOB | ffmpeg -i - -c:a copy -map 0:2 ~/Desktop/out.dts
 
