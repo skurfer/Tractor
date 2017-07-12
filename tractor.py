@@ -208,7 +208,7 @@ def add_duration(data):
     if not all(['start' in t for t in tracks]):
         return data
     for i, track in enumerate(tracks):
-        if not track.get('duration') and i != len(tracks) - 1:
+        if i != len(tracks) - 1:
             nextt = tracks[i + 1]
             track['duration'] = nextt['start'] - track['start']
             data['tracks'][i] = track
