@@ -24,7 +24,7 @@ In all cases, the original audio data should be copied untouched (without transc
 
 ## What do I need to run it? ##
 
-  * [Python 3][python] (It probably runs under 2.7, but that hasn’t been tested.)
+  * [Python 3.5][python] or later
   * [FFmpeg][ffmpeg], which does all the hard stuff
 
 ## Metadata ##

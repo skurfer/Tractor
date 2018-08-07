@@ -186,20 +186,6 @@ def md_from_ffprobe(source_path):
     return data
 
 
-def merge_data(d1, d2):
-    """update d1 with values from d2"""
-    for k, v in d2.items():
-        if k == 'tracks' and k in d1:
-            for i, track in enumerate(v):
-                if len(d1[k]) == i:
-                    d1[k].append(track)
-                else:
-                    d1[k][i].update(track)
-        else:
-            d1[k] = v
-    return d1
-
-
 def add_duration(data):
     """use start times to determine durations"""
     if 'tracks' not in data:
@@ -225,11 +211,11 @@ def scan_metadata(source_path, md_path):
     }
     md_base, md_ext = os.path.splitext(md_path)
     if md_ext.lower() == '.cue':
-        data = merge_data(data, md_from_cue(md_path))
+        data = {**data, **md_from_cue(md_path)}
     else:
-        data = merge_data(data, md_from_ffprobe(source_path))
+        data = {**data, **md_from_ffprobe(source_path)}
     if md_ext.lower() == '.json':
-        data = merge_data(data, md_from_json(md_path))
+        data = {**data, **md_from_json(md_path)}
     # fall back values for album/artist
     if 'artist' not in data and ' - ' in source_path:
         data['artist'] = source_path.split(' - ')[0]
