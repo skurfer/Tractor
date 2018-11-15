@@ -329,7 +329,7 @@ metadata['file_extension'] = ext
 if args.disc:
     metadata['disc'] = args.disc.lstrip('0')
 if container and cover_art and ext != 'mka':
-    print('WARNING: Cover art is only supported in'
+    print('WARNING: Cover art is only supported in '
           'Matroska containers. Ignoring.')
 commands = ffmpeg_cmds(album_dir, track_fmt, metadata, container, cover_art)
 
