@@ -261,9 +261,9 @@ def ffmpeg_cmds(album_dir, track_fmt, metadata, container, cover_art):
     ]
     for t in metadata['tracks']:
         ffmpeg_cmd = ffmpeg_cmd_base[:]
-        ffmpeg_cmd.extend(['-ss', '{start:.3f}'.format(**t)])
+        ffmpeg_cmd.extend(['-ss', '{start:.6f}'.format(**t)])
         if t['duration']:
-            ffmpeg_cmd.extend(['-t', '{duration:.3f}'.format(**t)])
+            ffmpeg_cmd.extend(['-t', '{duration:.6f}'.format(**t)])
         # if metadata['audio_codec'] == 'alac':
         #     ffmpeg_cmd[6] = 'alac'
         filename = track_fmt.format(metadata['file_extension'], **t)
