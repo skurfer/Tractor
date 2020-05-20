@@ -203,6 +203,19 @@ def add_duration(data):
     return data
 
 
+def merge_data(data1, data2):
+    # get copies of the original track data
+    tracks1 = data1.get('tracks', [])[:]
+    tracks2 = data2.get('tracks', [])[:]
+    # combine the top-level data
+    combined_data = {**data1, **data2}
+    # comine track data if available
+    if tracks1 and tracks2:
+        combined_data['tracks'] = [
+            {**t1, **t2} for (t1, t2) in zip(tracks1, tracks2)
+        ]
+    return combined_data
+
 def scan_metadata(source_path, md_path):
     """find and merge metadata"""
     data = {
@@ -211,11 +224,11 @@ def scan_metadata(source_path, md_path):
     }
     md_base, md_ext = os.path.splitext(md_path)
     if md_ext.lower() == '.cue':
-        data = {**data, **md_from_cue(md_path)}
+        data = merge_data(data, md_from_cue(md_path))
     else:
-        data = {**data, **md_from_ffprobe(source_path)}
+        data = merge_data(data, md_from_ffprobe(source_path))
     if md_ext.lower() == '.json':
-        data = {**data, **md_from_json(md_path)}
+        data = merge_data(data, md_from_json(md_path))
     # fall back values for album/artist
     if 'artist' not in data and ' - ' in source_path:
         data['artist'] = source_path.split(' - ')[0]
